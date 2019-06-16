@@ -21,13 +21,44 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">PhotoBomb</a>
+        <a class="navbar-brand" href="#"> Ann Adaya | Web Developer </a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+          <ul class="nav navbar-nav ">
+            <li><%= link_to "Projects", "/path1"  %></li>
+            <li><%= link_to "About", "/path2"  %></li>
+            <li><%= link_to "Blog", "/path3"  %></li>
           </ul>
+          <ul class="nav navbar-right col-md-4">
+
+
+<!-- If I have a current user, and is logged in to with a class of username, then we have a logout button. and if not, then I have a link for signing in and the path that all this go to is called devise path-->
+            <% if current_user %>
+
+            <li class="col-md-8 user-name">
+
+            <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe,
+
+            edit_user_registration_path, title: 'Edit Profile' %>
+
+            </li>
+
+            <li class="col-md-1"> </li>
+
+            <li class="col-md-3 logout"><%= link_to('Logout', destroy_user_session_path,
+
+            class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
+
+            <% else %>
+
+            <li class="col-md-4 pull-right">
+
+            <%= link_to('Sign In', new_user_session_path, class: 'btn btn-primary', title: 'Sign In') %>
+
+            </li>
+
+            <% end %>
+
+</ul>
         </div>
       </div>
     </div>
@@ -38,17 +69,7 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+        
       </div><!--/row-->
 
       <footer>
